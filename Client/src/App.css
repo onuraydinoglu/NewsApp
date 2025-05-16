@@ -1,4 +1,10 @@
-@import "tailwindcss";
- @plugin "daisyui" {
-   themes: light --default;
- }
+.swiper-pagination-bullet {
+  background: transparent !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: transparent !important;
+  color: #3b82f6 !important;
+  font-weight: bold;
+}

@@ -1,7 +1,8 @@
 import "./App.css";
+import PublicRoutes from "./modules/public/PublicRoutes";
 
 function App() {
-  return <>NewsApp</>;
+  return <PublicRoutes />;
 }
 
 export default App;
