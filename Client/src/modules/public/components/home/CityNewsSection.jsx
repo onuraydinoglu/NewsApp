@@ -3,10 +3,11 @@ import Subtitle from "../../../../shared/components/Subtitle";
 import Card from "../../../../shared/components/Card";
 
 import news from "../../../../shared/data/news";
+import NewsTextList from "../../../../shared/components/NewsTextList";
 
 const CityNewsSection = () => {
-  const hatayNews = news.filter((item) => item.city === 55);
-  const samsunNews = news.filter((item) => item.city === 31);
+  const hatayNews = news.filter((item) => item.city === 31);
+  const samsunNews = news.filter((item) => item.city === 55);
 
   return (
     <div className="my-15">
@@ -17,30 +18,30 @@ const CityNewsSection = () => {
         <div>
           <Subtitle>Samsun Haberleri</Subtitle>
           {samsunNews.slice(0, 1).map((item) => (
-            <Card key={item.id} image={item.image} title={item.title} content={item.content} />
+            <Card
+              key={item.id}
+              id={item.id}
+              image={item.image}
+              title={item.title}
+              content={item.content}
+            />
           ))}
-          <ul className="list">
-            {samsunNews.slice(1, 6).map((item) => (
-              <li key={item.id} className="list-row text-lg lora-semibold cursor-pointer px-0">
-                {item.title}
-              </li>
-            ))}
-          </ul>
+          <NewsTextList id={news.id} data={samsunNews} />
         </div>
 
         {/* HATAY */}
         <div>
           <Subtitle>Hatay Haberleri</Subtitle>
           {hatayNews.slice(0, 1).map((item) => (
-            <Card key={item.id} image={item.image} title={item.title} content={item.content} />
+            <Card
+              key={item.id}
+              id={item.id}
+              image={item.image}
+              title={item.title}
+              content={item.content}
+            />
           ))}
-          <ul className="list">
-            {hatayNews.slice(1, 6).map((item) => (
-              <li key={item.id} className="list-row text-lg lora-semibold cursor-pointer px-0">
-                {item.title}
-              </li>
-            ))}
-          </ul>
+          <NewsTextList id={news.id} data={hatayNews} />
         </div>
       </div>
     </div>
