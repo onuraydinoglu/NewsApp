@@ -1,11 +1,10 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Title from "../../../../shared/components/Title";
-import getCurrentCategory from "../../../../shared/utils/getCurrentCategory";
+import categories from "../../../../shared/data/categories";
 
 const Header = () => {
-  const location = useLocation();
-
-  const currentCategory = getCurrentCategory(location.pathname);
+  const { slug } = useParams();
+  const currentCategory = categories.find((c) => c.slug === slug);
 
   return <Title>{currentCategory ? `${currentCategory.name} Haberleri` : "Haberler"}</Title>;
 };

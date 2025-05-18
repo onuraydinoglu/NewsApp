@@ -6,7 +6,7 @@ const LastNewsSection = () => {
   return (
     <div className="flex flex-col gap-4">
       {news.slice(0, 4).map((item) => (
-        <NewsCard key={item.id} id={item.id} title={item.title} image={item.image} />
+        <NewsCard key={item.id} slug={item.slug} title={item.title} image={item.image} />
       ))}
     </div>
   );

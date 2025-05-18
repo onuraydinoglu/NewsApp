@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-const Card = ({ id, image, title, content }) => {
+const Card = ({ slug, image, title, content }) => {
   return (
-    <Link to={`/haber/${id}`}>
+    <Link to={`/haber/${slug}`}>
       <div className="card h-full">
         <figure>
           <img className="w-full h-70 object-cover" src={image} alt={title} />

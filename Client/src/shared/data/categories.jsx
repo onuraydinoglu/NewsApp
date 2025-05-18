@@ -1,16 +1,21 @@
+import generateSlug from "./generateSlug";
+
 const categories = [
-  { id: 1, name: "Son Dakika", path: "/" },
-  { id: 2, name: "Dünya", path: "/dunya" },
-  { id: 3, name: "Ekonomi", path: "/ekonomi" },
-  { id: 4, name: "Spor", path: "/spor" },
-  { id: 5, name: "Magazin", path: "/magazin" },
-  { id: 6, name: "Politika", path: "/politika" },
-  { id: 7, name: "Finans", path: "/finans" },
-  { id: 8, name: "Teknoloji", path: "/teknoloji" },
-  { id: 9, name: "Kültür Sanat", path: "/kultur-sanat" },
-  { id: 10, name: "Otomobil", path: "/otomobil" },
-  { id: 11, name: "Turizm", path: "/turizm" },
-  { id: 12, name: "3. Sayfa", path: "/ucuncu-sayfa" },
-];
+  { id: 1, name: "Son Dakika" },
+  { id: 2, name: "Dünya" },
+  { id: 3, name: "Ekonomi" },
+  { id: 4, name: "Spor" },
+  { id: 5, name: "Magazin" },
+  { id: 6, name: "Politika" },
+  { id: 7, name: "Finans" },
+  { id: 8, name: "Teknoloji" },
+  { id: 9, name: "Kültür Sanat" },
+  { id: 10, name: "Otomobil" },
+  { id: 11, name: "Turizm" },
+  { id: 12, name: "3. Sayfa" },
+].map((item) => ({
+  ...item,
+  slug: generateSlug(item.name),
+}));
 
 export default categories;

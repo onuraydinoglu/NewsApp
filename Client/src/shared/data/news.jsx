@@ -1,3 +1,5 @@
+import generateSlug from "./generateSlug";
+
 const news = [
   // Dünya (2)
   {
@@ -2020,6 +2022,9 @@ const news = [
     category: 12,
     city: 61,
   },
-];
+].map((item) => ({
+  ...item,
+  slug: generateSlug(item.title),
+}));
 
 export default news;

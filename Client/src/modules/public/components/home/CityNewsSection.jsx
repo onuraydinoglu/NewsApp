@@ -20,7 +20,7 @@ const CityNewsSection = () => {
           {samsunNews.slice(0, 1).map((item) => (
             <Card
               key={item.id}
-              id={item.id}
+              slug={item.slug}
               image={item.image}
               title={item.title}
               content={item.content}
@@ -35,7 +35,7 @@ const CityNewsSection = () => {
           {hatayNews.slice(0, 1).map((item) => (
             <Card
               key={item.id}
-              id={item.id}
+              slug={item.slug}
               image={item.image}
               title={item.title}
               content={item.content}
