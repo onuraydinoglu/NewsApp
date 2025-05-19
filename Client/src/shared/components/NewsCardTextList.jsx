@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const NewsTextList = ({ data }) => {
+const NewsCardTextList = ({ data }) => {
   return (
     <ul className="list">
       {data.slice(0, 6).map((item) => (
@@ -12,4 +12,4 @@ const NewsTextList = ({ data }) => {
   );
 };
 
-export default NewsTextList;
+export default NewsCardTextList;

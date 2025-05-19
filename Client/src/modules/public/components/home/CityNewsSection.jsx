@@ -1,9 +1,9 @@
 import Title from "../../../../shared/components/Title";
 import Subtitle from "../../../../shared/components/Subtitle";
-import Card from "../../../../shared/components/Card";
+import NewsCardVertical from "../../../../shared/components/NewsCardVertical";
 
 import news from "../../../../shared/data/news";
-import NewsTextList from "../../../../shared/components/NewsTextList";
+import NewsTextList from "../../../../shared/components/NewsCardTextList";
 
 const CityNewsSection = () => {
   const hatayNews = news.filter((item) => item.city === 31);
@@ -18,30 +18,18 @@ const CityNewsSection = () => {
         <div>
           <Subtitle>Samsun Haberleri</Subtitle>
           {samsunNews.slice(0, 1).map((item) => (
-            <Card
-              key={item.id}
-              slug={item.slug}
-              image={item.image}
-              title={item.title}
-              content={item.content}
-            />
+            <NewsCardVertical key={item.id} data={item} />
           ))}
-          <NewsTextList id={news.id} data={samsunNews} />
+          <NewsTextList data={samsunNews} />
         </div>
 
         {/* HATAY */}
         <div>
           <Subtitle>Hatay Haberleri</Subtitle>
           {hatayNews.slice(0, 1).map((item) => (
-            <Card
-              key={item.id}
-              slug={item.slug}
-              image={item.image}
-              title={item.title}
-              content={item.content}
-            />
+            <NewsCardVertical key={item.id} data={item} />
           ))}
-          <NewsTextList id={news.id} data={hatayNews} />
+          <NewsTextList data={hatayNews} />
         </div>
       </div>
     </div>

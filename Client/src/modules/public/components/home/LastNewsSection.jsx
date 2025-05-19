@@ -1,4 +1,4 @@
-import NewsCard from "../../../../shared/components/NewsCard";
+import NewsCardHorizontal from "../../../../shared/components/NewsCardHorizontal";
 
 import news from "../../../../shared/data/news";
 
@@ -6,7 +6,7 @@ const LastNewsSection = () => {
   return (
     <div className="flex flex-col gap-4">
       {news.slice(0, 4).map((item) => (
-        <NewsCard key={item.id} slug={item.slug} title={item.title} image={item.image} />
+        <NewsCardHorizontal key={item.id} data={item} />
       ))}
     </div>
   );
