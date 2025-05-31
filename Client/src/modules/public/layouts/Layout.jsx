@@ -4,7 +4,7 @@ import Footer from "../components/layout/Footer";
 
 const Layouts = () => {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col lg:px-50">
       <div className="container mx-auto">
         <GlobalHeader />
       </div>

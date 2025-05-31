@@ -1,8 +1,8 @@
 import "./App.css";
-import PublicRoutes from "./modules/public/PublicRoutes";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-  return <PublicRoutes />;
+  return <AppRoutes />;
 }
 
 export default App;
