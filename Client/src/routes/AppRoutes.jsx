@@ -30,8 +30,8 @@ const AppRoutes = () => {
         {/* Public */}
         <Route path="/" element={<PublicLayout />}>
           <Route index element={<Home />} />
-          <Route path=":slug" element={<NewsPage />} />
-          <Route path="haber/:slug" element={<NewsDetail />} />
+          <Route path="kategori/:id" element={<NewsPage />} />
+          <Route path="haber/:id" element={<NewsDetail />} />
           <Route path="*" element={<NotFound />} />
         </Route>
 
@@ -51,11 +51,11 @@ const AppRoutes = () => {
 
           <Route path="category" element={<Category />} />
           <Route path="category/add" element={<AddCategory />} />
-          <Route path="category/update" element={<UpdateCategory />} />
+          <Route path="category/update/:id/:slug" element={<UpdateCategory />} />
 
           <Route path="news" element={<News />} />
           <Route path="news/add" element={<AddNews />} />
-          <Route path="news/update" element={<UpdateNews />} />
+          <Route path="news/update/:id/:slug" element={<UpdateNews />} />
         </Route>
       </Routes>
     </Router>

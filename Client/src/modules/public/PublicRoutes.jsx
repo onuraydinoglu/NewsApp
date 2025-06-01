@@ -12,8 +12,8 @@ const PublicRoutes = () => {
       <Routes>
         <Route path="/" element={<Layouts />}>
           <Route index element={<Home />} />
-          <Route path=":slug" element={<NewsPage />} />
-          <Route path="haber/:slug" element={<NewsDetail />} />
+          <Route path=":id" element={<NewsPage />} />
+          <Route path="haber/:id" element={<NewsDetail />} />
           {/* DİKKAT: Bu Layouts İçinde */}
           <Route path="*" element={<NotFound />} />
         </Route>

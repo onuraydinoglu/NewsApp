@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NotFound from "./NotFound";
 
@@ -5,15 +6,28 @@ import Header from "../components/news/Header";
 import FeaturedNews from "../components/news/FeaturedNews";
 import OtherNewsList from "../components/news/OtherNewsList";
 
-import categories from "../../../shared/data/categories";
+import { getCategories } from "../../../shared/services/categoryService";
 
 const NewsPage = () => {
-  const { slug } = useParams();
-  const currentCategory = categories.find((c) => c.slug === slug);
+  const { id } = useParams();
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  if (!currentCategory) {
-    return <NotFound />;
-  }
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const res = await getCategories();
+      setCategories(res.data);
+      setLoading(false);
+    };
+
+    fetchCategories();
+  }, []);
+
+  const currentCategory = categories.find((c) => c._id === id);
+
+  if (loading) return null;
+
+  if (!currentCategory) return <NotFound />;
 
   return (
     <>

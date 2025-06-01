@@ -1,11 +1,24 @@
+import { useEffect, useState } from "react";
+
 import Title from "../../../../shared/components/Title";
 import Subtitle from "../../../../shared/components/Subtitle";
 import NewsCardVertical from "../../../../shared/components/NewsCardVertical";
-
-import news from "../../../../shared/data/news";
 import NewsTextList from "../../../../shared/components/NewsCardTextList";
 
+import { getNews } from "../../../../shared/services/newsService";
+
 const CityNewsSection = () => {
+  const [news, setNews] = useState([]);
+
+  const fetchNews = async () => {
+    const res = await getNews();
+    setNews(res.data);
+  };
+
+  useEffect(() => {
+    fetchNews();
+  }, []);
+
   const hatayNews = news.filter((item) => item.city === 31);
   const samsunNews = news.filter((item) => item.city === 55);
 

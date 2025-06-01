@@ -1,24 +1,32 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEdit, FaTrash } from "react-icons/fa";
-
 import Button from "../../../../shared/components/Button";
-
-import news from "../../../../shared/data/news";
-import categories from "../../../../shared/data/categories";
+import { getNews, deleteNews } from "../../../../shared/services/newsService";
 import cities from "../../../../shared/data/cities";
 
-const getCategoryName = (categoryId) => {
-  const category = categories.find((cat) => cat.id === categoryId);
-  return category ? category.name : "Bilinmeyen";
-};
-
 const getCityName = (cityId) => {
-  const city = cities.find((c) => c.id === cityId);
-  return city ? city.name : "bilinmeyen";
+  const city = cities.find((c) => c.id == cityId);
+  return city ? city.name : "Bilinmeyen";
 };
 
 const NewsListCard = () => {
   const navigate = useNavigate();
+  const [newsList, setNewsList] = useState([]);
+
+  const fetchNews = async () => {
+    const res = await getNews();
+    setNewsList(res.data);
+  };
+
+  const handleDelete = async (id) => {
+    await deleteNews(id);
+    fetchNews();
+  };
+
+  useEffect(() => {
+    fetchNews();
+  }, []);
 
   return (
     <div className="overflow-x-auto">
@@ -28,32 +36,41 @@ const NewsListCard = () => {
             <th>#</th>
             <th>Title</th>
             <th>Content</th>
-            <th>Category Name</th>
+            <th>Category</th>
             <th>City</th>
-            <th>Action</th>
+            <th>İmage</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {news.map((item, index) => (
-            <tr key={item.id}>
-              <th>{index + 1}</th>
+          {newsList.map((item, index) => (
+            <tr key={item._id}>
+              <td>{index + 1}</td>
               <td>{item.title}</td>
               <td>{item.content}</td>
-              <td>{getCategoryName(item.category)}</td>
+              <td>{item.category?.name}</td>
               <td>{getCityName(item.city)}</td>
               <td>
-                <div className="flex gap-4">
+                {item.image ? (
+                  <img
+                    src={`http://localhost:5000${item.image}`}
+                    alt={item.title}
+                    className="w-20 h-14 object-cover rounded"
+                  />
+                ) : (
+                  "No Image"
+                )}
+              </td>
+              <td>
+                <div className="flex gap-2">
                   <Button
-                    type="button"
+                    onClick={() => navigate(`/dashboard/news/update/${item._id}/${item.slug}`)}
                     className="btn-sm"
-                    onClick={() => navigate("/dashboard/news/update")}
                   >
-                    Edit
-                    <FaEdit />
+                    Edit <FaEdit />
                   </Button>
-                  <Button className="btn-sm btn-warning">
-                    Delete
-                    <FaTrash />
+                  <Button onClick={() => handleDelete(item._id)} className="btn-sm btn-warning">
+                    Delete <FaTrash />
                   </Button>
                 </div>
               </td>

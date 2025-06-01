@@ -1,22 +1,31 @@
 import { useParams } from "react-router-dom";
-
+import { useEffect, useState } from "react";
 import Subtitle from "../../../../shared/components/Subtitle";
-
-import news from "../../../../shared/data/news";
+import { getNewsById } from "../../../../shared/services/newsService";
 
 const Header = () => {
-  const { slug } = useParams();
-  const article = news.find((item) => item.slug === slug);
+  const { id } = useParams();
+  const [article, setArticle] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!article) {
-    return <p>Haber Bulunamadı.</p>;
-  }
+  useEffect(() => {
+    const fetchArticle = async () => {
+      try {
+        const res = await getNewsById(id);
+        setArticle(res.data);
+      } catch (err) {
+        console.error("Haber başlığı yüklenemedi:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchArticle();
+  }, [id]);
 
-  return (
-    <>
-      <Subtitle className="text-center py-10">{article.title}</Subtitle>
-    </>
-  );
+  if (loading) return null;
+  if (!article) return <p>Haber Bulunamadı.</p>;
+
+  return <Subtitle className="text-center py-10">{article.title}</Subtitle>;
 };
 
 export default Header;
